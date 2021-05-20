@@ -1,0 +1,98 @@
+﻿@using System.Collections.Specialized
+@{ ViewData["Title"] = "Painel do Usuário"; }
+
+@section Toolbar{
+    <div class="btn-group mr-2">
+        <button type="button" class="btn btn-sm btn-outline-secondary">Botão 01</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary">Botão 02</button>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+
+        Botão 03
+    </button>
+}
+@TempData["formMensagensErro"]
+@TempData["formMensagemSucesso"]
+<br />
+<h4>Cadastre abaixo um Evento:</h4>
+<form action="/Evento/Cadastrar" method="POST">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputNomeEvento">Nome do evento:&nbsp;</label>
+            <input type="text" class="form-control" id="inputNomeEvento" placeholder="Nome do Evento" name="Nome">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputDate">Data do evento:&nbsp;</label>
+            <input type="date" class="form-control" id="inputDate" name="dataEvento">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputClienteVinculado">A qual cliente o evento está vinculado?&nbsp;</label>&nbsp;
+            <input class="form-control" type="text" id="inputClienteVinculado" name="clienteContratante" placeholder="ID do Cliente" />
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputLocalVinculado">A qual local o evento está vinculado?&nbsp;</label>&nbsp;
+            <input class="form-control" type="text" id="inputLocalVinculado" name="localDoEvento" placeholder="ID do Local" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputDescricao">Coloque uma descrição para o evento:&nbsp;</label>&nbsp;
+            <input class="form-control" type="text" id="inputDescricao" name="descricaoEvento" placeholder="Descricao" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Cadastrar</button><br /><br />
+    <span>O ID do Evento será gerado automaticamente.</span>
+</form>
+<br />
+<br />
+<br />
+<h4>Remova um evento por ID:</h4>
+<form method="POST" action="/Evento/Remover">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputID">ID:&nbsp;</label>
+            <input type="text" class="form-control" id="inputID" placeholder="ID" name="ID">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Remover</button>
+</form>
+<br />
+<br />
+<br />
+<h4>Faça a edição dos dados de um Evento usando o ID:</h4>
+<form method="POST" action="/Evento/Editar">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputNomeEventoBusca">Nome do evento:&nbsp;</label>
+            <input type="text" class="form-control" id="inputNomeEventoBusca" placeholder="Nome do Evento" name="Nome">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputDateBusca">Data do evento:&nbsp;</label>
+            <input type="date" class="form-control" id="inputDateBusca" placeholder="Data do Evento" name="dataEvento">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputClienteVinculadoBusca">A qual cliente o evento está vinculado?&nbsp;</label>&nbsp;
+            <input class="form-control" type="text" id="inputClienteVinculadoBusca" name="clienteVinculadoBusca" placeholder="Nome do Cliente" />
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputLocalVinculadoBusca">A qual local o evento está vinculado?&nbsp;</label>&nbsp;
+            <input class="form-control" type="text" id="inputLocalVinculadoBusca" name="localVinculadoBusca" placeholder="Nome do Local" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputID">ID:&nbsp;</label>
+            <input type="text" class="form-control" id="inputID" placeholder="ID" name="ID">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputDescricao">Coloque uma descrição para o evento:&nbsp;</label>&nbsp;
+            <input class="form-control" type="text" id="inputDescricao" name="descricaoEvento" placeholder="Descricao" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Editar</button><br /><br />
+</form>
+<br />

@@ -3,14 +3,16 @@ using System;
 using Buffet.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Buffet.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210519065225_InitialCreate2")]
+    partial class InitialCreate2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,8 +257,8 @@ namespace Buffet.Migrations
                     b.Property<string>("Logradouro")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Numero")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<int>("Numero")
+                        .HasColumnType("int");
 
                     b.Property<string>("Uf")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");

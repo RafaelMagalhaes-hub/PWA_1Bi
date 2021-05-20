@@ -10,7 +10,6 @@ namespace Buffet.RequestModels
     {
         public string email { get; set; }
         public string senha { get; set; }
-
         public string confirmacao { get; set; }
 
 

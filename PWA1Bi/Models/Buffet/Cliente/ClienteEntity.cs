@@ -17,5 +17,15 @@ namespace Buffet.Models.Buffet.Cliente
             Id = new Guid();
             Eventos = new List<EventoEntity>();
         }
+
+        public ClienteEntity(Guid id, string nome, string email, ICollection<EventoEntity> eventos)
+        {
+            Id = new Guid();
+            Eventos = new List<EventoEntity>();
+            Nome = nome;
+            Email = email;
+            Eventos = eventos;
+        }
+
     }
 }

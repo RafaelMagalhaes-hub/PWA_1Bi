@@ -3,14 +3,16 @@ using System;
 using Buffet.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Buffet.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210519052419_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,19 +193,19 @@ namespace Buffet.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<Guid?>("ClienteId")
+                        .HasColumnType("char(36)");
+
                     b.Property<string>("Nome")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<Guid?>("SituacaoId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("clienteContratanteId")
-                        .HasColumnType("char(36)");
-
                     b.Property<DateTime>("dataEvento")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("descricaoEvento")
+                    b.Property<string>("descricaoEven")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<Guid?>("localDoEventoId")
@@ -211,9 +213,9 @@ namespace Buffet.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SituacaoId");
+                    b.HasIndex("ClienteId");
 
-                    b.HasIndex("clienteContratanteId");
+                    b.HasIndex("SituacaoId");
 
                     b.HasIndex("localDoEventoId");
 
@@ -255,8 +257,8 @@ namespace Buffet.Migrations
                     b.Property<string>("Logradouro")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Numero")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<int>("Numero")
+                        .HasColumnType("int");
 
                     b.Property<string>("Uf")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -400,13 +402,13 @@ namespace Buffet.Migrations
 
             modelBuilder.Entity("Buffet.Models.Buffet.Evento.EventoEntity", b =>
                 {
+                    b.HasOne("Buffet.Models.Buffet.Cliente.ClienteEntity", "Cliente")
+                        .WithMany("Eventos")
+                        .HasForeignKey("ClienteId");
+
                     b.HasOne("Buffet.Models.Buffet.Evento.SituacaoEvento", "Situacao")
                         .WithMany()
                         .HasForeignKey("SituacaoId");
-
-                    b.HasOne("Buffet.Models.Buffet.Cliente.ClienteEntity", "clienteContratante")
-                        .WithMany("Eventos")
-                        .HasForeignKey("clienteContratanteId");
 
                     b.HasOne("Buffet.Models.Buffet.Localizacao.LocalEntity", "localDoEvento")
                         .WithMany()

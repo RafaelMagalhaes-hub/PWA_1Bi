@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Buffet.Data;
+using Buffet.RequestModels.Cliente;
 using Microsoft.EntityFrameworkCore;
 
 namespace Buffet.Models.Buffet.Cliente
@@ -16,69 +17,54 @@ namespace Buffet.Models.Buffet.Cliente
         {
             _databaseContext = databaseContext;
         }
- 
-        public void ObterClientes()
+
+        public ClienteEntity Adicionar(CadastrarClienteRequestModels dadosBasicos)
         {
-            // OBTER UM ÚNICO OBJETO
-            /*
-            var primeiroCliente = _databaseContext.Clientes.First();
-            var primeiroClienteOuNulo = _databaseContext.Clientes.FirstOrDefault();
-            var clienteEspecifico1 = _databaseContext
-                .Clientes.Single(c => c.Id.ToString()
-                    .Equals("08d8f887-cd09-421d-8ee1-a0f9f0d36e57") );
-            var clienteEspecifico2 = _databaseContext
-                .Clientes.Single(c => c.Nome.Contains("Jo") );
-            var clienteEspecifico3 = _databaseContext
-                .Clientes.Find("08d8f887-cd09-421d-8ee1-a0f9f0d36e57");
-            
-            if (clienteEspecifico != null) {
-                Console.WriteLine(clienteEspecifico.Id);
-                Console.Write(" :: " + clienteEspecifico.Nome);
-                Console.Write(" :: " + clienteEspecifico.Email);
+            var novoCliente = ValidarDadosBasicos(dadosBasicos);
+            _databaseContext.Clientes.Add(novoCliente);
+            _databaseContext.SaveChanges();
+            return novoCliente;
+        }
+        private ClienteEntity ValidarDadosBasicos(
+            CadastrarClienteRequestModels dadosBasicos,
+            ClienteEntity entidadeExistente = null
+        )
+        {
+            var entidade = entidadeExistente ?? new ClienteEntity();
+            if (dadosBasicos.Nome == null)
+            {
+                throw new Exception("A Descrição é obrigatória");
             }
-            */
-            
-            // OBTER MÚLTIPLOS OBJETOS
-            //var clientes = _databaseContext.Clientes.ToList();
-            /*
-            var clientes = _databaseContext.Clientes
-                .Where(
-                    c => c.Nome.StartsWith("Jo") &&
-                                    c.Nome.EndsWith("e")
-                ).ToList();
-            */
-            
-            // ORDENAÇÃO
-            /*
-            var clientes = _databaseContext.Clientes
-                .OrderBy(c => c.Nome).ToList();
-            */
-            /*
-            foreach (var cliente in clientes) {
-                Console.WriteLine("----");
-                Console.WriteLine(cliente.Id);
-                Console.Write(" :: " + cliente.Nome);
-                Console.Write(" :: " + cliente.Email);
+            entidade.Nome = dadosBasicos.Nome;
+            if (dadosBasicos.Email == null)
+            {
+                throw new Exception("A Descrição é obrigatória");
             }
-            */
-            
-            // ENTIDADES RELACIONADAS
-            var cliente = _databaseContext.Clientes
-                .Include(c => c.Eventos)
-                .ToList()
-                .Single(c => c.Id.ToString()
-                    .Equals("08d8f887-cd09-421d-8ee1-a0f9f0d36e57")
-                );
+            entidade.Email = dadosBasicos.Email;
+            return entidade;
+        }
 
-            if (cliente != null) {
-                Console.WriteLine(cliente.Id);
-                Console.Write(" :: " + cliente.Nome);
-                Console.Write(" :: " + cliente.Email);
-                Console.Write(" :: " + cliente.Eventos.Count);
-            }
+        public ClienteEntity ObterPorId(string param)
+        {
+            ClienteEntity clienteEspecifico1 = _databaseContext.Clientes.Find(new Guid(param));
+            return clienteEspecifico1; 
+        }
 
-            //return cliente;
-            //return _databaseContext.Clientes.ToList();
+        public ClienteEntity Remover(string email)
+        {
+            var clienteEntity = ObterPorId(email);
+            _databaseContext.Clientes.Remove(clienteEntity);
+            _databaseContext.SaveChanges();
+            return clienteEntity;
+        }
+
+        public ClienteEntity Editar(
+            CadastrarClienteRequestModels dadosBasicos)
+        {
+            var clienteEntity = ObterPorId(dadosBasicos.ID);
+            clienteEntity = ValidarDadosBasicos(dadosBasicos,clienteEntity);
+            _databaseContext.SaveChanges();
+            return clienteEntity;
         }
     }
 }

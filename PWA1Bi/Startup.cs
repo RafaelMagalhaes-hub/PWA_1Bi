@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using Buffet.Data;
 using Buffet.Models.Acesso;
 using Buffet.Models.Buffet.Cliente;
+using Buffet.Models.Buffet.ConvidadosDoEvento;
+using Buffet.Models.Buffet.Evento;
+using Buffet.Models.Buffet.Localizacao;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -45,7 +48,10 @@ namespace Buffet
             {
                 options.LoginPath = "/Acesso/Login";
             });            
+            services.AddTransient<ConvidadoService>();
             services.AddTransient<ClienteService>();
+            services.AddTransient<EventoService>();
+            services.AddTransient<LocalService>();
             services.AddTransient<AcessoService>();
         }
 

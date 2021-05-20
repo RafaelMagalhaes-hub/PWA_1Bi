@@ -1,0 +1,65 @@
+﻿@using System.Collections.Specialized
+@{ ViewData["Title"] = "Painel do Usuário"; }
+
+@section Toolbar{
+    <div class="btn-group mr-2">
+        <button type="button" class="btn btn-sm btn-outline-secondary">Botão 01</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary">Botão 02</button>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+
+        Botão 03
+    </button>
+}
+@TempData["formMensagensErro"]
+@TempData["formMensagemSucesso"]
+<br />
+<h4>Cadastre abaixo um cliente:</h4>
+<form method="POST" action="/Cliente/Cadastrar">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputNome">Nome:&nbsp;</label>
+            <input type="text" class="form-control" id="inputNome" placeholder="Nome" name="Nome">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputEmail">E-mail:&nbsp;</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="E-mail" name="Email">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Cadastrar</button><br /><br />
+    <span>O ID do Cliente será gerado automaticamente.</span>
+</form>
+<br />
+<br />
+<br />
+<h4>Remova um cliente por ID:</h4>
+<form method="POST" action="/Cliente/Remover">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputID">ID:&nbsp;</label>
+            <input type="text" class="form-control" id="inputID" placeholder="ID" name="ID">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Remover</button>
+</form><br /><br /><br />
+<h4>Faça a edição dos dados de um Cliente usando o ID:</h4>
+<form method="POST" action="/Cliente/Editar">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputNome">Nome:&nbsp;</label>
+            <input type="text" class="form-control" id="inputNome" placeholder="Nome" name="Nome">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputEmail">E-mail:&nbsp;</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="E-mail" name="Email">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputID">ID:&nbsp;</label>
+            <input type="text" class="form-control" id="inputID" placeholder="ID" name="ID">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Editar</button><br /><br />
+</form>
+<br />

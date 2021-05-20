@@ -5,6 +5,30 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Models\Endereco\**" />
+      <Compile Remove="Views\Admin\SecaoTeste\**" />
+      <Content Remove="Models\Endereco\**" />
+      <Content Remove="Views\Admin\SecaoTeste\**" />
+      <EmbeddedResource Remove="Models\Endereco\**" />
+      <EmbeddedResource Remove="Views\Admin\SecaoTeste\**" />
+      <None Remove="Models\Endereco\**" />
+      <None Remove="Views\Admin\SecaoTeste\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Views\Admin\SecaoEscolhida\Class.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Views\Admin\SecaoEscolhida\cshtml.razor" />
+      <Content Remove="Views\Admin\SecaoEscolhida\Secao5.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Views\Admin\SecaoEscolhida\htmlpage.html" />
+    </ItemGroup>
+
+    <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.13" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.13" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13">
@@ -12,6 +36,10 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Views\Admin\Supervisao\" />
     </ItemGroup>
 
 </Project>

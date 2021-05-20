@@ -23,6 +23,7 @@
     </ul>
 </nav>
 
+@TempData["formMensagensErro"]
 <div class="container-fluid">
     <div class="row">
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -36,34 +37,29 @@
 
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" asp-controller="Admin" asp-action="Supervisao">
+                        <a class="nav-link" asp-controller="Admin" asp-action="Supervisao">
                             <span data-feather="home"></span>
                             Supervisao
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            Seção 01
+                        <a class="nav-link"  asp-controller="Admin" asp-action="Secao1">
+                            Clientes
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            Seção 02
+                        <a class="nav-link" asp-controller="Admin" asp-action="Secao2">
+                            Eventos
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            Seção 03
+                        <a class="nav-link" class="nav-link" asp-controller="Admin" asp-action="Secao3">
+                            Locais
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            Seção 04
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            Seção 05
+                        <a class="nav-link" class="nav-link" asp-controller="Admin" asp-action="Secao4">
+                            Configurações
                         </a>
                     </li>
                 </ul>

@@ -1,0 +1,125 @@
+﻿@using System.Collections.Specialized
+@{ ViewData["Title"] = "Painel do Usuário"; }
+
+
+@section Toolbar{
+    <div class="btn-group mr-2">
+        <button type="button" class="btn btn-sm btn-outline-secondary">Botão 01</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary">Botão 02</button>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+        Botão 03
+    </button>
+}
+@TempData["formMensagensErro"]
+@TempData["formMensagemSucesso"]
+<br />
+<h4>Cadastre abaixo um local:</h4>
+<form method="POST" action="/Local/Cadastrar">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputNomeLocal">Nome do Local:</label>
+            <input type="text" class="form-control" id="inputNomeLocal" placeholder="Nome" name="Nome">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputRuaLocal">Logradouro do Local:</label>
+            <input type="text" class="form-control" id="inputRuaLocal" placeholder="Rua" name="Logradouro">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputBairro">Bairro do Local:</label>&nbsp;
+            <input type="text" class="form-control" id="inputBairro" name="Bairro" placeholder="Bairro">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputCidade">Cidade do Local:</label>&nbsp;
+            <input type="text" class="form-control" id="inputCidade" name="Cidade" placeholder="Cidade">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputNumero">Número do Local:</label>&nbsp;
+            <input type="text" class="form-control" id="inputNumero" name="Numero" placeholder="Numero">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputCep">Informe o CEP do Local:</label>&nbsp;
+            <input type="text" class="form-control" id="inputCep" name="CEP" placeholder="CEP">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputUF">UF do local:&nbsp;</label>&nbsp;
+            <input type="text" class="form-control" id="inputUF" name="UF" placeholder="UF">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputDescricao">Descricao do local:&nbsp;</label>&nbsp;
+            <input type="text" class="form-control" id="inputDescricao" name="Descricao" placeholder="Descricao">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Cadastrar</button><br />
+    <span>O ID do Local será gerado automaticamente.</span>
+</form>
+<br />
+<br />
+<br />
+<h4>Remova um local por ID:</h4>
+<form method="POST" action="/Local/Remover">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputID">ID:&nbsp;</label>
+            <input type="text" class="form-control" id="inputID" placeholder="ID" name="ID">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Remover</button><br />
+</form><br /><br /><br />
+<h4>Utilize os campos abaixo para editar as informações de um Local pelo ID:</h4>
+<form method="POST" action="/Local/Editar">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputNomeLocalBusca">Nome do Local:</label>
+            <input type="text" class="form-control" id="inputNomeLocalBusca" placeholder="Nome" name="Nome">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputRuaLocalBusca">Logradouro do Local:</label>
+            <input type="text" class="form-control" id="inputRuaLocalBusca" placeholder="Logradouro" name="Logradouro">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputBairroBusca">Bairro do Local:</label>&nbsp;
+            <input type="text" class="form-control" id="inputBairroBusca" name="Bairro" placeholder="Bairro">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputCidadeBusca">Cidade do Local:</label>&nbsp;
+            <input type="text" class="form-control" id="inputCidadeBusca" name="Cidade" placeholder="Cidade">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputID">ID:&nbsp;</label>
+            <input type="text" class="form-control" id="inputID" placeholder="ID" name="ID">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputUF">UF do local:&nbsp;</label>&nbsp;
+            <input type="text" class="form-control" id="inputUF" name="UF" placeholder="UF">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputDescricao">Descricao do local:&nbsp;</label>&nbsp;
+            <input type="text" class="form-control" id="inputDescricao" name="Descricao" placeholder="Descricao">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputCep">Informe o CEP do Local:</label>&nbsp;
+            <input type="text" class="form-control" id="inputCep" name="CEP" placeholder="CEP">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputNumero">Número do Local:</label>&nbsp;
+            <input type="text" class="form-control" id="inputNumero" name="Numero" placeholder="Numero">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Editar</button><br />
+</form>
+<br />
